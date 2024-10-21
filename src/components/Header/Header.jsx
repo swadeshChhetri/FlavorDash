@@ -11,19 +11,19 @@ import "../../styles/header.css";
 const nav__links = [
   {
     display: "Home",
-    path: "/home",
+    path: "/FlavorDash/",
   },
   {
     display: "Foods",
-    path: "/foods",
+    path: "/FlavorDash/foods",
   },
   {
     display: "Cart",
-    path: "/cart",
+    path: "/FlavorDash/cart",
   },
   {
     display: "Contact",
-    path: "/contact",
+    path: "/FlavorDash/contact",
   },
 ];
 
@@ -40,7 +40,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
+    const handleScroll = () => {
       if (
         document.body.scrollTop > 80 ||
         document.documentElement.scrollTop > 80
@@ -49,9 +49,13 @@ const Header = () => {
       } else {
         headerRef.current.classList.remove("header__shrink");
       }
-    });
+    };
 
-    return () => window.removeEventListener("scroll");
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
@@ -73,6 +77,7 @@ const Header = () => {
                   className={(navClass) =>
                     navClass.isActive ? "active__menu" : ""
                   }
+                  onClick={toggleMenu}
                 >
                   {item.display}
                 </NavLink>
@@ -83,7 +88,7 @@ const Header = () => {
           {/* ======== nav right icons ========= */}
           <div className="nav__right d-flex align-items-center gap-4">
             <span className="cart__icon" onClick={toggleCart}>
-              <i class="ri-shopping-basket-line"></i>
+              <i className="ri-shopping-basket-line"></i>
               <span className="cart__badge">{totalQuantity}</span>
             </span>
 
@@ -93,9 +98,9 @@ const Header = () => {
               </Link>
             </span>
 
-           <span className="mobile__menu" onClick={toggleMenu}>
+            <span className="mobile__menu" onClick={toggleMenu}>
               <i class="ri-menu-line"></i>
-                </span>
+            </span>
           </div>
         </div>
       </Container>

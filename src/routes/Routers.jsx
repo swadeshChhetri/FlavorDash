@@ -13,7 +13,7 @@ import Register from "../pages/Register";
 const Routers = () => {
   return (
     <Routes>
-      <Route path="/FlavorDash/" element={<Navigate to="/home" />} />
+      <Route path="/FlavorDash/"/>
       <Route path="/FlavorDash/home" element={<Home />} />
       <Route path="/FlavorDash/foods" element={<AllFoods />} />
       <Route path="/FlavorDash/foods/:id" element={<FoodDetails />} />
